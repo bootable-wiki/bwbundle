@@ -1,0 +1,8 @@
+*
+!.gitignore
+!.github/
+!.github/**
+!EFI/
+!EFI/**
+!readme.md
+!update-efi-binaries.sh

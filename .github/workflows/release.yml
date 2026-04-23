@@ -1,0 +1,51 @@
+name: Build and Release BWBundle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl xz-utils dpkg-dev p7zip-full unzip python3
+
+      - name: Run update script
+        run: |
+          chmod +x update-efi-binaries.sh
+          ./update-efi-binaries.sh
+
+      - name: Build zip artifact
+        id: build
+        run: |
+          export TZ=America/Los_Angeles
+          DATETIME=$(date +"%Y%m%d_%H%M")
+          echo "datetime=$DATETIME" >> "$GITHUB_OUTPUT"
+
+          # Include all mt86 binaries (existing or freshly downloaded)
+          MT86_FILES=$(ls mt86* 2>/dev/null || true)
+
+          ZIP_NAME="bwbundle_alpha_${DATETIME}.zip"
+          zip -r "$ZIP_NAME" boot EFI $MT86_FILES
+          echo "zip_name=$ZIP_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DATETIME="${{ steps.build.outputs.datetime }}"
+          ZIP_NAME="${{ steps.build.outputs.zip_name }}"
+          TAG="alpha-${DATETIME}"
+
+          gh release create "$TAG" \
+            --title "Alpha Build ${DATETIME}" \
+            --notes "Automated alpha build from commit ${{ github.sha }}" \
+            "$ZIP_NAME"
