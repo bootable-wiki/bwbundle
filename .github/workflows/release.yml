@@ -34,7 +34,7 @@ jobs:
           MT86_FILES=$(ls mt86* 2>/dev/null || true)
 
           ZIP_NAME="bwbundle_alpha_${DATETIME}.zip"
-          zip -r "$ZIP_NAME" boot EFI $MT86_FILES
+          zip -r "$ZIP_NAME" EFI $MT86_FILES
           echo "zip_name=$ZIP_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
