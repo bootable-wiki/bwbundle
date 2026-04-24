@@ -4,5 +4,8 @@
 !.github/**
 !EFI/
 !EFI/**
+EFI/Rufus/
+EFI/boot/
+EFI/tool/
 !readme.md
 !update-efi-binaries.sh
