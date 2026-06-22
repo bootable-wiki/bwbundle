@@ -30,7 +30,7 @@ cp "$tmp/grub/usr/lib/grub/x86_64-efi-signed/grubx64.efi.signed" EFI/boot/grubx6
 curl -fL https://boot.netboot.xyz/ipxe/netboot.xyz.efi -o EFI/tool/netboot.xyz.efi
 
 # 4. memtest86+ — latest version from GitHub, extract only x86_64 binary.
-ver=$(curl -fsSL https://api.github.com/repos/memtest86plus/memtest86plus/releases/latest | python3 -c 'import sys,json;print(json.load(sys.stdin)["tag_name"])')
+ver=$(curl -fsSL ${GITHUB_TOKEN:+-H "Authorization: Bearer $GITHUB_TOKEN"} https://api.github.com/repos/memtest86plus/memtest86plus/releases/latest | python3 -c 'import sys,json;print(json.load(sys.stdin)["tag_name"])')
 curl -fL "https://memtest.org/download/$ver/mt86plus_${ver#v}.binaries.zip" -o "$tmp/m.zip"
 unzip -o "$tmp/m.zip" '*x86_64*' -d .
 
