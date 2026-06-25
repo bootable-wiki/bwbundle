@@ -57,5 +57,5 @@ cp "$sbr" EFI/tool/
 export TZ=America/Los_Angeles
 DATETIME=$(date +"%Y%m%d_%H%M")
 VERSION="bwbundle_alpha_${DATETIME}"
-echo "$VERSION" > version.txt
+echo "set bwb_version=\"$VERSION\"" > version.txt
 zip -r "${VERSION}.zip" . -x '.git/*' -x '.github/*' -x 'update-efi-binaries.sh' -x '.gitignore'

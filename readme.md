@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: BSD-2-Clause-Patent -->
 
-**Full documentation available at:**
+**Full & frequently updated documentation available at:**
 > https://github.bootable.wiki/bwbundle/
 
 ## What is BWBundle?
@@ -17,7 +17,7 @@ The bundle includes GRUB configuration files that provide a complete boot menu w
 | KeyTool | View Secure Boot keys & remove enrolled keys or hashes |
 | Netboot.xyz | Boot into a variety of distros over the ethernet port |
 | Memtest86+ | Test the memory of your PC |
-| UEFI Shell | Basic environment to run other EFI programs, copy data, edit text files |
+| UEFI Shell | Basic environment to run other EFI programs, edit text files |
 | Rufus Driver | NTFS / exFAT booting support, requires two partitions |
 | SecureBootRecovery | Verify & install the Microsoft UEFI CA 2023 |
 
