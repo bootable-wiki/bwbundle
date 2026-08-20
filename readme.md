@@ -49,7 +49,7 @@ Ventoy can [reserve unallocated space](https://ventoy.net/en/doc_disk_layout.htm
 Extract the BWBundle contents to the root of a FAT32 USB drive. FAT32 works on all UEFI systems. The GRUB configurations detect ISO files and EFI binaries on the USB drive. The boot menu shows entries for each match.
 
 > BWBundle includes the Rufus NTFS driver. You can install Windows from the same USB drive as Linux ISOs.
-> BWBundle offers suggestions only. It does not provide direct support. See [Creating Windows Installers on iPad](/ios_windows/) for more information.
+> BWBundle offers suggestions only. It does not provide direct support. See [Creating Windows Installers on iPad](https://bootable.wiki/ios_windows/) for more information.
 
 # Bundled Tools
 
